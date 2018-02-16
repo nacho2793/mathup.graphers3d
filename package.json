@@ -12,6 +12,7 @@
     "browser-sync": "^2.23.2",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.0",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "script-loader": "^0.7.2"
   }
 }

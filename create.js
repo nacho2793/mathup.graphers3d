@@ -1,88 +1,6 @@
-/*let JSON = {
-  render: {
-    element: 'canvas',
-    width: 600,
-    height: 600,
-    axis: {
-    	x:4,
-    	y:4,
-    	z:4,
-    	separation: 1,
-    	numbers: false
-    },
-    backColor: "white"
-  },
-  type: '3D',
-  functions: {
-    sphere: [
-      {
-        radius: 0.7,
-        resolution: 20,
-        color: "blue",
-        position: [0,2,0]
-      }
-    ],
-    box: [
-      {
-        width: 1,
-        height: 1,
-        depth: 1,
-        position: [3,0,0],
-        color: "purple"
-      }
-    ],
-    equation2d: [
-      {
-        equation: 'x^2',
-        initX: 0,
-        finalX: 1,
-        step: 2, 
-        color: "red"
-      }
-    ],
-    equation3d: [
-      {
-        equation: 'sin(2y)*cos(2x)+1',
-        initX: -2,
-        finalX: 2,
-        initY: -2,
-        finalY: 2,
-        step: 3, 
-        color: "red"
-      }
-    ],
-    plane:{
-    	geo: [
-	      {
-	        width: 4,
-	        height: 4,
-	        position:[0,0,0],
-	        rotation: [0,90,0],
-	        color: "orange"
-	      },
-	      {
-	        width: 4,
-	        height: 4,
-	        position:[0,0,0],
-	        rotation: [90,0,0],
-	        color: "orange"
-	      },
-	      {
-	        width: 4,
-	        height: 4,
-	        position:[0,0,0],
-	        rotation: [0,0,90],
-	        color: "orange"
-	      }
-	    ],
-	    intersect: [
-	    	[0, 1, 2]
-	    ]
-    }
-  }
-};*/
+import Geometry3D from 'grapher3d/geometry3d';
 
-var render = function(params){
+const render = function(params){
 	var render = params.render;
 	var DOM = new Geometry3D(render.element, render.width, render.height, render.backColor);
 	if(render.axis){
@@ -141,8 +59,8 @@ var render = function(params){
 	}
 
 	function animate() {
-	  requestAnimationFrame( animate );           
-	  DOM.controls.update(); 
+	  requestAnimationFrame( animate );
+	  DOM.controls.update();
 	  DOM.render();
 	}
 	animate();

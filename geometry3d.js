@@ -1,3 +1,11 @@
+import '!script!grapher3d/javascript/nerdamer-master/nerdamer.core';
+import '!script!grapher3d/javascript/nerdamer-master/Algebra';
+import '!script!grapher3d/javascript/nerdamer-master/Calculus';
+import '!script!grapher3d/javascript/nerdamer-master/Solve';
+import '!script!grapher3d/javascript/nerdamer-master/Extra';
+import '!script!grapher3d/javascript/three';
+import '!script!grapher3d/javascript/controls/TrackballControls';
+
 var Geometry3D = function(id, width, height, backColor){
 	var scene = new THREE.Scene();
 	var camera = new THREE.PerspectiveCamera( 75,width / height, 0.1, 1000 );
@@ -11,7 +19,7 @@ var Geometry3D = function(id, width, height, backColor){
 
 	renderer.setClearColor(backColor);
 	container.appendChild( renderer.domElement );
-	
+
 	/*Controls*/
 	controls = new THREE.TrackballControls( camera, renderer.domElement );
 	/*Lights*/
@@ -27,8 +35,8 @@ var Geometry3D = function(id, width, height, backColor){
 	  renderer.render(scene, camera);
 	}
 	function animate() {
-	  requestAnimationFrame( animate );           
-	  controls.update(); 
+	  requestAnimationFrame( animate );
+	  controls.update();
 	  render();
 	}
 	/*CREATE FUNCTIONS*/
@@ -216,9 +224,9 @@ var Geometry3D = function(id, width, height, backColor){
 	  var verts = [];
 	  for(var i=minX;i<=maxX;i+=step){
 	    for(var j=minY;j<=maxY;j+=step){
-	      var k = nerdamer(equation,{x:i, y:j}).evaluate(); 
+	      var k = nerdamer(equation,{x:i, y:j}).evaluate();
 	      if((k.text().indexOf('i')<0)){
-	        //console.log(k.text()); 
+	        //console.log(k.text());
 	        geometry.vertices.push(new THREE.Vector3( i, j, parseFloat(k.text())));
 	        verts.push(i,j,parseFloat(k.text()));
 	      }else{
@@ -279,7 +287,7 @@ var Geometry3D = function(id, width, height, backColor){
 	    }
 	    return line;
 	}
-	
+
 
 	/*OTHER FUNCTIONS*/
 	function move(geoms, movement){
@@ -288,12 +296,12 @@ var Geometry3D = function(id, width, height, backColor){
 	      for(var i=0;i<geoms.length;i++){
 	        geoms[i].geometry.rotateX(movement.rotate[0]*Math.PI / 180);
 	        geoms[i].geometry.rotateY(movement.rotate[1]*Math.PI / 180);
-	        geoms[i].geometry.rotateZ(movement.rotate[2]*Math.PI / 180);  
+	        geoms[i].geometry.rotateZ(movement.rotate[2]*Math.PI / 180);
 	      }
 	    }else{
 	      geoms.geometry.rotateX(movement.rotate[0]*Math.PI / 180);
 	      geoms.geometry.rotateY(movement.rotate[1]*Math.PI / 180);
-	      geoms.geometry.rotateZ(movement.rotate[2]*Math.PI / 180); 
+	      geoms.geometry.rotateZ(movement.rotate[2]*Math.PI / 180);
 	    }
 	  }
 	  if(movement.translate){
@@ -308,9 +316,9 @@ var Geometry3D = function(id, width, height, backColor){
 	        }else{
 	          geoms[i].translateX(movement.translate[0]);
 	          geoms[i].translateY(movement.translate[1]);
-	          geoms[i].translateZ(movement.translate[2]); 
+	          geoms[i].translateZ(movement.translate[2]);
 	        }
-	        
+
 	      }
 	    }else{
 	      if(geoms.geometry.vertices){
@@ -322,7 +330,7 @@ var Geometry3D = function(id, width, height, backColor){
 	      }else{
 	        geoms.translateX(movement.translate[0]);
 	        geoms.translateY(movement.translate[1]);
-	        geoms.translateZ(movement.translate[2]); 
+	        geoms.translateZ(movement.translate[2]);
 	      }
 	    }
 	  }
@@ -581,17 +589,17 @@ var Geometry3D = function(id, width, height, backColor){
 	    var lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
 	    var line = new THREE.Line(helper, lineMaterial);
 	    scene.add(line);
-	    line[0] = new THREE.Line3(pl2.geometry.vertices[0], pl2.geometry.vertices[1]); 
-	    line[1] = new THREE.Line3(pl2.geometry.vertices[0], pl2.geometry.vertices[2]); 
-	    line[2] = new THREE.Line3(pl2.geometry.vertices[1], pl2.geometry.vertices[3]); 
-	    line[3] = new THREE.Line3(pl2.geometry.vertices[2], pl2.geometry.vertices[3]); 
-	    var normal = new THREE.Line3(ref.clone(), new THREE.Vector3(helper.vertices[0].x-cross.x*100, helper.vertices[0].y-cross.y*100, helper.vertices[0].z-cross.z*100)); 
+	    line[0] = new THREE.Line3(pl2.geometry.vertices[0], pl2.geometry.vertices[1]);
+	    line[1] = new THREE.Line3(pl2.geometry.vertices[0], pl2.geometry.vertices[2]);
+	    line[2] = new THREE.Line3(pl2.geometry.vertices[1], pl2.geometry.vertices[3]);
+	    line[3] = new THREE.Line3(pl2.geometry.vertices[2], pl2.geometry.vertices[3]);
+	    var normal = new THREE.Line3(ref.clone(), new THREE.Vector3(helper.vertices[0].x-cross.x*100, helper.vertices[0].y-cross.y*100, helper.vertices[0].z-cross.z*100));
 	    var planeRef = new THREE.Plane( cross );
 	    planeDist = planeRef.intersectLine(normal);
 	    planeDist = ref.distanceTo(planeDist);
 	    planeRef = new THREE.Plane( cross, -planeDist );
 	    for(var i=0;i<4;i++){
-	      //line = new THREE.Line3(new THREE.Vector3(0,0,4), new THREE.Vector3(0,0,-4)); 
+	      //line = new THREE.Line3(new THREE.Vector3(0,0,4), new THREE.Vector3(0,0,-4));
 	      var intersect = planeRef.intersectLine(line[i]);
 	      if(intersect){
 	        points.push(intersect);
@@ -866,7 +874,7 @@ var Geometry3D = function(id, width, height, backColor){
 	}
 	function crossProduct(v1, v2){
 	  return new THREE.Vector3(v1.y*v2.z-v1.z*v2.y, v1.z*v2.x-v1.x*v2.z, v1.x*v2.y-v1.y*v2.x);
-	} 
+	}
 	function rotateLine(center, point, angle) {
 	  var radians = toRadians(angle),
 	      cos = Math.cos(radians),
@@ -908,3 +916,5 @@ var Geometry3D = function(id, width, height, backColor){
 		axis: createAxis
 	}
 }
+
+export default Geometry3D;
