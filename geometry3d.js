@@ -1,27 +1,27 @@
-import '!script!grapher3d/javascript/nerdamer-master/nerdamer.core';
-import '!script!grapher3d/javascript/nerdamer-master/Algebra';
-import '!script!grapher3d/javascript/nerdamer-master/Calculus';
-import '!script!grapher3d/javascript/nerdamer-master/Solve';
-import '!script!grapher3d/javascript/nerdamer-master/Extra';
-import '!script!grapher3d/javascript/three';
-import '!script!grapher3d/javascript/controls/TrackballControls';
+import '!script-loader!grapher3d/javascript/nerdamer-master/nerdamer.core';
+import '!script-loader!grapher3d/javascript/nerdamer-master/Algebra';
+import '!script-loader!grapher3d/javascript/nerdamer-master/Calculus';
+import '!script-loader!grapher3d/javascript/nerdamer-master/Solve';
+import '!script-loader!grapher3d/javascript/nerdamer-master/Extra';
+import '!script-loader!grapher3d/javascript/three';
+import '!script-loader!grapher3d/javascript/controls/TrackballControls';
 
 var Geometry3D = function(id, width, height, backColor){
-	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera( 75,width / height, 0.1, 1000 );
+	const scene = new THREE.Scene();
+	const camera = new THREE.PerspectiveCamera( 75,width / height, 0.1, 1000 );
 	//renderer.setSize( window.innerWidth, window.innerHeight);
-	var numbers = [];
+	let numbers = [];
 
-	var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+	const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 	renderer.setSize( width, height);
-	container = document.getElementById( id );
+	const container = document.getElementById( id );
 	document.body.appendChild( container );
 
 	renderer.setClearColor(backColor);
 	container.appendChild( renderer.domElement );
 
 	/*Controls*/
-	controls = new THREE.TrackballControls( camera, renderer.domElement );
+	const controls = new THREE.TrackballControls( camera, renderer.domElement );
 	/*Lights*/
 	var light = new THREE.AmbientLight( 0xffffff, 0.4 ); // soft white light
 	  light.position.set(0,20,0)
@@ -243,7 +243,6 @@ var Geometry3D = function(id, width, height, backColor){
 	      geometry.faces.push( new THREE.Face3(i+1, i+linePoints+1, i+linePoints) );
 	    }
 	  }
-	  console.log(geometry.vertices)
 	  geometry.computeBoundingBox();
 	  geometry.computeFaceNormals();
 	  geometry.computeVertexNormals();
