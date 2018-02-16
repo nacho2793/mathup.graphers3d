@@ -1,4 +1,4 @@
-let JSON = {
+/*let JSON = {
   render: {
     element: 'canvas',
     width: 600,
@@ -80,7 +80,7 @@ let JSON = {
 	    ]
     }
   }
-};
+};*/
 
 var render = function(params){
 	var render = params.render;
@@ -148,44 +148,4 @@ var render = function(params){
 	animate();
 }
 
-render(JSON);
-
-/*
-var geometry = new Geometry3D('canvas', 400, 400, 0xffffff);
-var geo3d = new Geometry3D('other', 400, 400, 0xffffff);
-
-geometry.axis(4,4,4, 1, false);
-var sphere = geometry.createSphere(0.7, 20, 'purple');
-var box = geometry.createBox(1,1,1, 'green');
-var equation = geometry.create3Dfunction('sin(y)*cos(x)+1', -4, 4, -4, 4,2, 'orange');
-var equation = geometry.create2Dfunction('3x^2-6x', 1, 2, 2, 'red');
-geometry.move(box, {translate:[1.4,0,0]});
-box_verts = geometry.returnVerts(box);
-geometry.drawDimensions([box_verts[0], box_verts[1], box_verts[4]], 0.1, 0);
-
-var sphere2 = geo3d.createSphere(0.7, 20, 'red');
-var regular = geo3d.createRegular(6, 0.7, 1, 'blue', false, true, true);
-var plane1 = geo3d.createPlane(4, 4, true);
-var plane2 = geo3d.createPlane(4, 4, true);
-var plane3 = geo3d.createPlane(4, 4, true);
-geo3d.move(plane2, {rotate:[0, 45, 0], translate:[-1,0,0]});
-geo3d.move(plane3, {rotate:[90, 0, 0], translate:[-1,0,0]});
-geo3d.intersection(plane1, plane2, plane3);
-
-geo3d.axis(10,10,10, 1,true, 1);
-geo3d.move(regular, {translate:[-1.6, 0, 0]})
-
-function animate() {
-  requestAnimationFrame( animate );           
-  geometry.controls.update(); 
-  geometry.render();
-}
-function animate2() {
-  requestAnimationFrame( animate2 );           
-  geo3d.controls.update(); 
-  geo3d.render();
-}
-
-animate();
-animate2();
-*/
+export default render;
