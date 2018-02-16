@@ -1,0 +1,87 @@
+To create a 3D grapher you need to customize a div an put it in absolute position, so you can add the scene. (Be sure to set the width and the height, THE SCENE IS NOT RESPONSIVE).
+
+You need to include the following files to use the grapher:
+  -geometry3d.js:
+	=>This file contains the creation methods.
+  -three.js
+    =>File to create all the geometry
+  -TrackballControls
+    =>To interact with the scene
+  -fonts
+    =>Folder that has the fonts
+  -nerdamer-master:
+    =>Folder that contains various equiation solvers.
+  -The creation file
+
+Example:
+
+<script src="/javascript/nerdamer-master/nerdamer.core.js"></script>
+<script src="/javascript/nerdamer-master/Algebra.js"></script>
+<script src="/javascript/nerdamer-master/Calculus.js"></script>
+<script src="/javascript/nerdamer-master/Solve.js"></script>
+<script src="/javascript/nerdamer-master/Extra.js"></script>
+<script src="/javascripts/three.js"></script>
+<script src="/javascripts/controls/TrackballControls.js"></script>
+
+<div id="canvas" class="absolute2"></div>
+<div id="other" class="absolute"></div>
+
+<script src="./geometry3d.js"></script>
+<script src="./create.js"></script>
+
+THE CREATION FILE:
+First you need to create a scene by calling a new Geometry3d, in the parameters will be:
+	-ID of the div (without #)
+	-Width
+	-Height
+	-Backgroun color
+	Example:
+		var geometry = new Geometry3D('canvas', 400, 400, 0xffffff);
+
+With that object you cad add certain attributes to your scene:
+	geometry.createSphere(radius, resolution, color)
+		-radius: the measure of the sphere radius
+		-resolution: the amount of divisions (more division, more resolution)
+	geometry.createBox(width, height, depth, color)
+	geometry.createPlane(width, height)
+	geometry.createRegular(numberOfSides, radius, height, color)
+	geometry.create2Dfunction(equation, minX, maxX, resolution, color)
+		equation: A string representing an equiation without the 'y' ('3x^2-6x')
+		minX: Minimal value of x to evaluate the expression
+		maxX: Maximum value of x to evaluate the expression
+		resolution: How many samples of the equation
+	geometry.create3Dfunction(equation, minX, maxX, minY, maxY, resolution, color)
+		equation: A string representing an equiation without the 'z' ('sin(y)*cos(x)+1')
+		minX: Minimal value of x to evaluate the expression
+		maxX: Maximum value of x to evaluate the expression
+		minY: Minimal value of y to evaluate the expression
+		maxY: Maximum value of y to evaluate the expression
+		resolution: How many samples of the equatio
+	geometry.intersection(plane1, plane2, plane3)
+		This function can accept 2 or 3 planes
+Another functions that doesnt create geometry are:
+	geometry.axis(x, y, z, step, numbers):
+		-Add the axis in the origin, the x, y, z parameters specify the length for each axis. The number is a boolean to put numbers in the steps.
+	geometry.move(geometry, movement)
+		geometry: Any geometry created with the past functions
+		movement: A dictionary that can contains to keys:
+			-rotate: with an array of [x, y, z]
+			-translate: with an array of [x, y, z]
+
+To draw dimensions:
+	You will need the vertices you want to set the dimensions, there is a function to retrieve the vertices from an object created:
+		geometry.returnVerts(object);
+			object: An object created
+	After you got the vertices, you can use the next function:
+		geometry.drawDimensions(verts, 0.1, 0);
+			-verts: An array of 2 verts and an optional reference
+			-offsetX: distance offset to place the dimension.
+			-offsetY: distance offset to place the dimension.
+
+To display anything onscreen, you will need to implement a function (animate) and you need to implement it in the js file you're working:
+	function animate() {
+	  requestAnimationFrame( animate );           
+	  geometry.controls.update(); 
+	  geometry.render();
+	}
+	animate();
